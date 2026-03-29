@@ -13,6 +13,18 @@ subprojects {
     apply(plugin = "com.gradleup.shadow")
     apply(plugin = "maven-publish")
 
+    kotlin {
+        jvmToolchain(17)
+    }
+
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.github.Anuken.Arc") {
+                useVersion(rootProject.libs.versions.arc.get())
+            }
+        }
+    }
+
     tasks.shadowJar {
         mergeServiceFiles()
 

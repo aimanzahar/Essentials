@@ -6,7 +6,9 @@ plugins {
 dependencies {
     compileOnly(libs.ksp.api)
     compileOnly(libs.kotlinpoet)
-    implementation(libs.bundles.game)
+    implementation(libs.bundles.game) {
+        isTransitive = false
+    }
     implementation(libs.kotlinpoet.ksp)
     implementation("com.squareup:javapoet:1.13.0")
 }
